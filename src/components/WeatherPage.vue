@@ -140,4 +140,51 @@ export default {
   font-weight: bold;
   margin-top: 20px;
 }
+
+/* Dark Mode für Weather */
+.dark-mode .weather-page {
+  background-color: #2c2c2c; /* Dunkler Hintergrund */
+  color: #f4f4f4; /* Heller Text */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Dezenter Rahmen */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Stärkere Schatten */
+}
+
+.dark-mode .weather-page input {
+  background-color: #1e1e1e; /* Dunkler Input-Hintergrund */
+  color: #f4f4f4; /* Heller Text */
+  border: 1px solid #8a2be2; /* Rahmen in Lila */
+}
+
+.dark-mode .weather-page button {
+  background-color: #8a2be2; /* Lila Hintergrund */
+  color: #ffffff; /* Weiße Schrift */
+  border: none; /* Kein Rahmen */
+}
+
+.dark-mode .weather-page button:hover {
+  background-color: #5a1c91; /* Dunkleres Lila beim Hover */
+}
+
+.dark-mode .weather-page .error {
+  color: #ff6b6b; /* Fehler in auffälligem Rot */
+}
+
+/* Mobile Anpassungen für die Wetter-Sektion */
+@media (max-width: 768px) {
+  .weather-page {
+    margin: 20px 5%; /* Größerer Abstand zu den Seiten (5% von links und rechts) */
+    padding: 20px; /* Konsistenter Innenabstand */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Leichterer Schatten für kleinere Geräte */
+  }
+
+  .weather-page input {
+    width: 90%; /* Eingabefeld passt sich besser an die kleinere Breite an */
+    max-width: none; /* Hebt maximale Breite auf */
+  }
+
+  .weather-page button {
+    width: auto; /* Button bleibt flexibel */
+    margin-top: 10px; /* Abstand zum Eingabefeld für bessere Lesbarkeit */
+  }
+}
 </style>

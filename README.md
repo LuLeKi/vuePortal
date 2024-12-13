@@ -1,9 +1,5 @@
 Todo:
 docker-file
-
-_______________________________________________
-for other devices responsive...(media tags)
-________________________________________________________
 3Seiten:
     Matrikelnummer angeben
     Dokumentation was gemacht wurde wie umgesetzt welche tools/framworks/features... 
@@ -22,6 +18,7 @@ Done:
     Login
     weather
     recaptcha
+    responsive
 
 # weather-web
 

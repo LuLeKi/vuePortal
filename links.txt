@@ -1,3 +1,0 @@
-https://console.cloud.google.com/iam-admin/serviceaccounts/details/101149726138507659269/keys?cloudshell=true&inv=1&invt=AbkA6w&project=vueportal-1734084918960&supportedpurview=organizationId
-https://console.cloud.google.com/security/recaptcha/6LeLSJoqAAAAAHimo42pZbpE-jijHTiMwJIsVP3J/edit?inv=1&invt=AbkA7Q&project=vueprojekt-1734094555213
-https://console.cloud.google.com/security/recaptcha/6Lf_b5oqAAAAACmMfNjvRLtuj01SDuHfs3K5UPBw/integration?project=vueportal-1734084918960&inv=1&invt=AbkA7A

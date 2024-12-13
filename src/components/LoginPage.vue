@@ -75,14 +75,109 @@ export default {
 <style scoped>
 /* Simple styles for the login page */
 .login-page {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fff;
+  max-width: 800px; /* Gleiche maximale Breite wie bei Wetter- und Wikipedia-Seite */
+  margin: 30px auto; /* Zentrierte Position mit Abstand nach oben/unten */
+  padding: 20px 40px; /* Gleiche Innenabstände */
+  border-radius: 15px; /* Runde Ecken */
+  background-color: #f4f4f9; /* Heller Hintergrund */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Schattierung */
+  text-align: center; /* Zentrierte Textelemente */
 }
+
+.login-page input {
+  padding: 10px; /* Gleiche Polsterung wie bei Wetter- und Wikipedia-Seite */
+  margin-bottom: 15px; /* Abstand zwischen den Eingabefeldern */
+  border: 2px solid #007bff; /* Blaue Rahmenfarbe */
+  border-radius: 5px; /* Runde Ecken */
+  font-size: 16px; /* Konsistente Schriftgröße */
+  width: calc(100% - 40px); /* Gleiche Breitenregelung wie bei Wetter */
+  max-width: 400px; /* Maximale Breite */
+  display: block; /* Eingabefelder untereinander */
+  margin-left: auto; /* Zentrierung */
+  margin-right: auto; /* Zentrierung */
+}
+
+.login-page button {
+  padding: 10px 15px; /* Gleiche Größe wie bei Wetter-Button */
+  border: none; /* Ohne Rahmen */
+  border-radius: 5px; /* Runde Ecken */
+  background-color: #007bff; /* Blaue Farbe */
+  color: white; /* Weiße Schrift */
+  font-size: 16px; /* Konsistente Schriftgröße */
+  cursor: pointer; /* Mauszeiger auf Button */
+  transition: background-color 0.3s ease; /* Sanfte Hover-Animation */
+  width: calc(100% - 40px); /* Gleiche Breitenregelung */
+  max-width: 400px; /* Maximale Breite */
+  margin-left: auto; /* Zentrierung */
+  margin-right: auto; /* Zentrierung */
+}
+
+.login-page button:hover {
+  background-color: #0056b3; /* Dunkleres Blau beim Hover */
+}
+
 .error {
   color: red;
+  margin-top: 15px; /* Abstand zur Fehlermeldung */
+  text-align: center; /* Zentrierte Fehlermeldung */
+}
+
+/* Dark Mode für Login */
+.dark-mode .login-page {
+  background-color: #2c2c2c; /* Dunkler Hintergrund */
+  color: #f4f4f4; /* Heller Text */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Dezenter Rahmen */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Stärkere Schatten */
+}
+
+.dark-mode .login-page input {
+  background-color: #1e1e1e; /* Dunkler Input-Hintergrund */
+  color: #f4f4f4; /* Heller Text */
+  border: 1px solid #8a2be2; /* Rahmen in Lila */
+}
+
+.dark-mode .login-page button {
+  background-color: #8a2be2; /* Lila Hintergrund */
+  color: #ffffff; /* Weiße Schrift */
+  border: none; /* Kein Rahmen */
+}
+
+.dark-mode .login-page button:hover {
+  background-color: #5a1c91; /* Dunkleres Lila beim Hover */
+}
+
+.dark-mode .login-page .error {
+  color: #ff6b6b; /* Fehler in auffälligem Rot */
+}
+
+/* Mobile Anpassungen für die Login-Seite */
+@media (max-width: 768px) {
+  .login-page {
+    margin: 20px 5%; /* Größerer Abstand zu den Seiten */
+    padding: 20px; /* Konsistenter Innenabstand */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatten für mobile Geräte */
+  }
+
+  .login-page input {
+    width: 90%; /* Eingabefelder passen sich der Breite an */
+    margin-bottom: 15px; /* Abstand zwischen den Feldern */
+    padding: 10px; /* Angenehme Größe für mobile Eingaben */
+    font-size: 16px; /* Schriftgröße für bessere Lesbarkeit */
+    border-radius: 5px; /* Runde Ecken */
+  }
+
+  .login-page button {
+    width: 100%; /* Button nimmt die gesamte Breite ein */
+    padding: 10px; /* Konsistente Höhe des Buttons */
+    font-size: 16px; /* Anpassung der Schriftgröße */
+    margin-top: 10px; /* Abstand nach oben */
+    border-radius: 5px; /* Runde Ecken */
+  }
+
+  .error {
+    font-size: 0.9rem; /* Kleinere Schriftgröße für die Fehlermeldung */
+    margin-top: 10px; /* Abstand zur Fehlermeldung */
+    text-align: center; /* Zentrierte Fehlermeldung */
+  }
 }
 </style>

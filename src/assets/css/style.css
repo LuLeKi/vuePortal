@@ -189,3 +189,62 @@ h2 {
 a, .router-link, h1, h2, .click-icon, .map-container, .section img {
     cursor: pointer; /* Zeigt den Klick-Symbol */
 }
+
+@media (max-width: 768px) {
+    :root {
+        --background-color: #ffffff; /* Heller Hintergrund für bessere Lesbarkeit */
+        --text-color: #222; /* Leicht dunklerer Text */
+        --link-color: #6a1bab; /* Dezenteres Link-Farbschema */
+        --section-background: #f9f9f9; /* Hellerer Abschnitthintergrund */
+        --section-shadow: rgba(0, 0, 0, 0.05); /* Leichter Schatten */
+    }
+
+    /* Sektionen */
+    .section {
+        margin: 10px 20px;
+        padding: 15px 20px;
+        border-radius: 10px;
+    }
+
+    /* Überschriften */
+    h1, h2 {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        padding-left: 1rem;
+    }
+
+    /* Paragraphen */
+    p {
+        font-size: 0.9rem;
+        margin: 0.5rem 1rem;
+        text-align: justify;
+    }
+
+    /* Bilder in Sektionen */
+    .section img {
+        max-width: 100%; /* Bilder passen sich der Breite des Containers an */
+        max-height: 200px;
+        margin: 5px auto; /* Zentriert */
+    }
+
+    /* Karten */
+    .map-container {
+        width: 100%; /* Karte nutzt die volle Breite */
+        height: 300px; /* Reduzierte Höhe für mobile Ansicht */
+        margin: 10px 0; /* Weniger Abstand */
+    }
+
+    /* Loader */
+    .loader {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Theme-Toggle Button */
+    .theme-toggle {
+        top: 10px; /* Geringerer Abstand von oben */
+        right: 10px; /* Geringerer Abstand von rechts */
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}

@@ -18,13 +18,13 @@
       <!-- Image and description that toggle on click -->
       <img src="@/assets/images/Informatik.jpg" alt="Informatik Bild" />
     </a>
-      <p v-show="showSections.informatik">
-        Informatiker übertragen Vorgänge der realen Welt auf Computersysteme,
-        indem sie komplexe Aufgabenstellungen in geeignete Modelle überführen und diese auf Softwaresystemen abbilden. <br>
-        Dabei entwickeln sie innovative Lösungen, um Prozesse zu optimieren und Technologien effizient einzusetzen.<br>
-        Ihre Arbeit umfasst die Analyse, Konzeption und Umsetzung von IT-Systemen, die in nahezu allen Branchen Anwendung finden.<br>
-        Informatiker gestalten so die digitale Transformation und treiben Innovationen in Wirtschaft und Gesellschaft voran.<br>
-      </p>
+    <section v-show="showSections.informatik">
+        <p>   Informatiker übertragen Vorgänge der realen Welt auf Computersysteme,</p>
+          <p>   indem sie komplexe Aufgabenstellungen in geeignete Modelle überführen und diese auf Softwaresystemen abbilden. </p>
+            <p>   Dabei entwickeln sie innovative Lösungen, um Prozesse zu optimieren und Technologien effizient einzusetzen.</p>
+              <p> Ihre Arbeit umfasst die Analyse, Konzeption und Umsetzung von IT-Systemen, die in nahezu allen Branchen Anwendung finden.</p>
+                <p>  Informatiker gestalten so die digitale Transformation und treiben Innovationen in Wirtschaft und Gesellschaft voran.</p>
+              </section>
     </section>
 
     <!-- Elektrotechnik Section -->
@@ -46,12 +46,12 @@
  
     <img src="@/assets/images/Elektrotechnik.jpg" alt="Elektrotechnik Bild" />
      </a>
-      <p v-show="showSections.elektrotechnik">
-        Die Elektrotechnik bewegt und verändert die Welt: Smartphones, Assistenzsysteme, Smart Home oder Medizintechnik sind aus unserem Leben nicht mehr wegzudenken.<br>
-        Sie bildet die Grundlage für nahezu alle modernen Technologien und ermöglicht Fortschritte in der Kommunikation, Energieversorgung und Automatisierung.<br>
-        Elektrotechniker entwickeln innovative Lösungen, um Prozesse effizienter zu gestalten und neue Anwendungen zu erschließen.<br>
-        Ihre Arbeit treibt die Digitalisierung, Nachhaltigkeit und den technologischen Fortschritt in vielen Lebensbereichen entscheidend voran.<br>
-      </p>
+     <section v-show="showSections.elektrotechnik">
+        <p>  Die Elektrotechnik bewegt und verändert die Welt: Smartphones, Assistenzsysteme, Smart Home oder Medizintechnik sind aus unserem Leben nicht mehr wegzudenken.</p>
+          <p> Sie bildet die Grundlage für nahezu alle modernen Technologien und ermöglicht Fortschritte in der Kommunikation, Energieversorgung und Automatisierung.</p>
+            <p> Elektrotechniker entwickeln innovative Lösungen, um Prozesse effizienter zu gestalten und neue Anwendungen zu erschließen.</p>
+              <p>Ihre Arbeit treibt die Digitalisierung, Nachhaltigkeit und den technologischen Fortschritt in vielen Lebensbereichen entscheidend voran.</p>
+            </section>
     </section>
 
     <!-- Maschinenbau Section -->
@@ -71,13 +71,13 @@
   >
     <img src="@/assets/images/maschinenbau.jpg" alt="Maschinenbau Bild" />
   </a>
-      <p v-show="showSections.maschinenbau">
-        Der Maschinenbau mit seinen zahlreichen Ausprägungen verknüpft Theorie und Praxis, Naturwissenschaft und Technik.<br>
-        Als eine der vielseitigsten Ingenieurdisziplinen schafft er die Grundlage für die Entwicklung innovativer Produkte und Systeme. <br>
-        Von der Konstruktion moderner Fahrzeuge bis hin zur Robotik und Produktionstechnik prägt der Maschinenbau nahezu alle Industriebereiche.<br>
-        Er verbindet Kreativität mit präzisem technischen Wissen und trägt entscheidend zur Lösung globaler Herausforderungen <br>
-        wie Nachhaltigkeit und technologischer Innovation bei.
-      </p>
+  <section v-show="showSections.maschinenbau">
+        <p>  Der Maschinenbau mit seinen zahlreichen Ausprägungen verknüpft Theorie und Praxis, Naturwissenschaft und Technik.</p>
+          <p>   Als eine der vielseitigsten Ingenieurdisziplinen schafft er die Grundlage für die Entwicklung innovativer Produkte und Systeme. </p>
+            <p> Von der Konstruktion moderner Fahrzeuge bis hin zur Robotik und Produktionstechnik prägt der Maschinenbau nahezu alle Industriebereiche.</p>
+              <p> Er verbindet Kreativität mit präzisem technischen Wissen und trägt entscheidend zur Lösung globaler Herausforderungen </p>
+                <p>   wie Nachhaltigkeit und technologischer Innovation bei.</p>
+              </section>
     </section>
 
 <!-- Google Maps Section -->
@@ -133,7 +133,15 @@ export default {
 .homepage {
     font-family: inherit;
 }
-
-
+/* Mobile Anpassungen nur für Text */
+@media (max-width: 768px) {
+  .section p {
+    font-size: 0.95rem; /* Etwas größere Schriftgröße für bessere Lesbarkeit */
+    line-height: 1.6; /* Angenehmere Zeilenhöhe */
+    text-align: left; /* Text bleibt im Blocksatz */
+    margin: 1rem auto; /* Ausreichender Abstand zum umgebenden Inhalt */
+    max-width: 90%; /* Breite des Textes leicht begrenzt */
+  }
+}
 </style>
 

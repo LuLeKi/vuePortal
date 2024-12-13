@@ -110,6 +110,7 @@ export default {
 
 
 <style>
+/* Allgemeine Styles (Desktop) */
 :root {
     /* Default Farben (Light Mode, jetzt umgekehrt) */
     --background-color: #1e1e1e; /* Dunkler Hintergrund für Light Mode */
@@ -190,22 +191,25 @@ nav {
   border-top: 2px solid var(--link-color); /* Farbige Linie als Akzent */
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
-  margin-right: 20px;
-  padding: 10px 20px;
-  border: 2px solid var(--hover-color);
+  position: absolute;
+  top: 2%; /* Abstand nach oben */
+  right: 2%; /* Abstand nach rechts */
+  padding: 1% 2%; /* Kompaktere Innenabstände */
+  border: 1px solid var(--hover-color); /* Dünnerer Rahmen */
   background: var(--link-color);
   color: var(--text-color);
   border-radius: 25px;
+  font-size: 0.9rem; /* Kleinere Schriftgröße */
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Dezenter Schatten */
 }
 
 .theme-toggle:hover {
   background: var(--hover-color);
-  transform: scale(1.1); /* Animation beim Hover */
+  transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
 }
 
 /* Header Content */
@@ -238,6 +242,86 @@ nav a:hover {
   background-color: var(--hover-color); /* Dezenter Hover-Effekt */
   color: var(--text-color);
 }
+/* Mobile Anpassungen */
 
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column; /* Vertikale Anordnung */
+    align-items: center; /* Zentriert */
+    gap: 3%; /* Weniger Abstand */
+    width: 100%; /* Nutzt die volle Breite */
+    display: flex;
+  flex-direction: column; /* Vertikale Anordnung */
+  align-items: center; /* Zentrierte Inhalte */
+  gap: 2%; /* Abstand zwischen Logo, Titel und Button */
+  margin-top: 5%; /* Verschiebt den gesamten Header weiter nach unten */
+  }
+
+  .custom-title {
+    font-size: 1.5rem; /* Kleinere Schriftgröße */
+    text-align: center;
+    width: 100%; /* Titel über die gesamte Breite */
+    font-size: 1.5rem; /* Leicht reduzierte Schriftgröße */
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 2% 0; /* Abstand nach oben und unten */
+  text-align: center;
+  }
+
+  .dhbw-logo {
+  height: auto; /* Automatische Höhe */
+  width: 15%; /* Proportionale Breite */
+  max-width: 60px; /* Maximale Breite */
+  object-fit: contain; /* Verhindert Verzerrungen */
+  margin-bottom: 1%; /* Etwas Abstand unter dem Logo */
+}
+.login-info {
+  padding: 1% 2%; /* Reduzierte Abstände */
+  border: 1px solid var(--link-color); /* Dünnerer Rahmen */
+  border-radius: 5px; /* Leicht abgerundete Ecken */
+  font-size: 0.9rem; /* Kleinere Schriftgröße */
+  font-weight: 400; /* Weniger fett */
+  background: var(--section-background);
+  color: var(--text-color);
+  display: inline-block;
+  margin-top: 2%; /* Etwas Abstand nach oben */
+  text-align: center; /* Zentrierte Inhalte */
+  width: auto; /* Dynamische Breite */
+  max-width: 90%; /* Begrenzte maximale Breite */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+.login-info a, .router-link {
+  color: var(--link-color); /* Link-Farbe */
+  text-decoration: none;
+  font-size: 0.85rem; /* Kleinere Schriftgröße */
+}
+
+.login-info span {
+  font-size: 0.85rem; /* Konsistente Schriftgröße für Text */
+}
+
+  .theme-toggle {
+    top: 1%; /* Abstand nach oben */
+    right: 1%; /* Abstand nach rechts */
+    padding: 5%; /* Relativer Abstand innerhalb des Buttons */
+    font-size: 0.9rem; /* Kleinere Schriftgröße */
+    width: auto; /* Breite anpassen */
+    padding: 0.5% 1%; /* Kleinere Abstände für mobile Geräte */
+    font-size: 0.8rem; /* Reduzierte Schriftgröße */
+
+    border: 1px solid var(--hover-color); /* Rahmen bleibt proportional */
+  }
+
+  nav {
+    text-align: center; /* Links in die Mitte */
+    padding: 2% 0; /* Vertikale und horizontale Abstände in Prozent */
+  }
+
+  nav a {
+    font-size: 0.9rem; /* Kleinere Schriftgröße für Links */
+    padding: 1% 2%; /* Kompakte Abstände */
+  }
+}
 </style>
 
