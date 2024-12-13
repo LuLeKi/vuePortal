@@ -7,16 +7,22 @@
         <button @click="toggleTheme" class="theme-toggle">Toggle Theme</button>
       </div>
       <div class="login-info">
-        <span>{{ username }}</span>&nbsp;|&nbsp;
-        <router-link v-if="!loggedIn" to="/login">Einloggen</router-link>
-        <a v-else @click.prevent="logout" class="logout-link">Ausloggen</a>
-      </div>
+  <span>{{ username }}</span>&nbsp;|&nbsp;
+  <router-link v-if="!loggedIn" to="/login">Einloggen</router-link>
+  <a v-else @click.prevent="logout" class="logout-link">Ausloggen</a>&nbsp;|&nbsp;
+  <span>
+  reCAPTCHA
+  <span v-if="recaptchaVerified" style="color: black;">✔</span>
+  <span v-else style="color: black;">✖</span>
+</span>
+
+</div>
+
     </header>
     <nav>
       <router-link to="/home">Home</router-link> |
       <router-link to="/weather">Weather</router-link> |
-      <router-link to="/wikisearch">WikiSearch</router-link> |
-      <router-link to="/contact">Contact</router-link> <!-- Neuer Link -->
+      <router-link to="/wikisearch">WikiSearch</router-link>
     </nav>
     <router-view @login-success="handleLoginSuccess" />
   </div>
@@ -30,6 +36,7 @@ export default {
     return {
       username: "Nicht eingeloggt",
       loggedIn: false,
+      recaptchaVerified: false,
     };
   },
   methods: {
@@ -45,14 +52,18 @@ export default {
         });
     },
     handleLoginSuccess(username) {
-      this.loggedIn = true;
-      this.username = username;
-      this.$router.push("/home");
-    },
+    this.loggedIn = true;
+    this.username = username;
+    this.recaptchaVerified = true; // reCAPTCHA erfolgreich bestanden
+    this.$router.push("/home");
+  },
+
+
     logout() {
       axios.post("/logout").then(() => {
         this.loggedIn = false;
         this.username = "Nicht eingeloggt";
+        this.recaptchaVerified = false;
         this.$router.push("/login");
       });
     },
@@ -65,6 +76,28 @@ export default {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
       }
+    },
+    runRecaptchaVerification() {
+      if (!window.grecaptcha) {
+        console.error("reCAPTCHA konnte nicht geladen werden.");
+        return;
+      }
+      window.grecaptcha.enterprise.ready(async () => {
+        const siteKey = process.env.VUE_APP_RECAPTCHA_SITE_KEY;
+        try {
+          const token = await window.grecaptcha.enterprise.execute(siteKey, { action: "LOGIN" });
+          console.log("reCAPTCHA-Token:", token);
+          const response = await axios.post("/verify-recaptcha", { token });
+          if (response.data.success) {
+            this.recaptchaVerified = true;
+          } else {
+            this.recaptchaVerified = false;
+          }
+        } catch (error) {
+          console.error("Fehler bei der reCAPTCHA-Verifizierung:", error);
+          this.recaptchaVerified = false;
+        }
+      });
     },
   },
   created() {

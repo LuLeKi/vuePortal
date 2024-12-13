@@ -1,11 +1,8 @@
 Todo:
-
-google recaptcha
 docker-file
 
 _______________________________________________
 for other devices responsive...(media tags)
-build
 ________________________________________________________
 3Seiten:
     Matrikelnummer angeben
@@ -15,6 +12,7 @@ ________________________________________________________
 
 ________________________________________________________
 not possible:
+
 wikipedia
 refreshing page doesnt work : Cannot GET /home
 
@@ -23,9 +21,7 @@ Done:
     Homepage
     Login
     weather
-https://www.google.com/recaptcha/admin/enterprise
-
-
+    recaptcha
 
 # weather-web
 

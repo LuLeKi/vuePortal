@@ -7,7 +7,6 @@ import WikiPage from "../components/WikiPage.vue";
 import KeinZugriff from "../components/KeinZugriff.vue";
 import WillkommenPage from "../components/WillkommenPage.vue";
 import LoadingPage from "../components/LoadingPage.vue"; // Preload LoadingPage
-import ContactForm from "../components/ContactForm.vue"; // Import der Kontaktformular-Komponente
 
 // Reusable Auth Check
 const requireAuth = (allowedRole = null) => (to, from, next) => {
@@ -47,7 +46,6 @@ const routes = [
   { path: "/weather", component: WeatherPage, beforeEnter: requireAuth("rich") },
   { path: "/wikisearch", component: WikiPage, beforeEnter: requireAuth("rich") },
   { path: "/kein-zugriff", component: KeinZugriff },
-  { path: "/contact", component: ContactForm }, // Neue Route für Kontaktformular
 ];
 
 // Create Router
