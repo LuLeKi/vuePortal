@@ -1,5 +1,11 @@
 Todo:
-docker-file
+Aktienpage
+aktienpage header
+aktienpage router
+
+Code durchgehen kommentare vereinheitlichen
+code einrückungen über alle  files  gleich machen
+
 3Seiten:
     Matrikelnummer angeben
     Dokumentation was gemacht wurde wie umgesetzt welche tools/framworks/features... 

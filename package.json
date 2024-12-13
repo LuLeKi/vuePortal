@@ -10,6 +10,7 @@
   "dependencies": {
     "@google-cloud/recaptcha-enterprise": "^5.13.0",
     "axios": "^1.7.9",
+    "chart.js": "^4.4.7",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.31.1",
     "cors": "^2.8.5",

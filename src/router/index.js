@@ -7,6 +7,7 @@ import WikiPage from "../components/WikiPage.vue";
 import KeinZugriff from "../components/KeinZugriff.vue";
 import WillkommenPage from "../components/WillkommenPage.vue";
 import LoadingPage from "../components/LoadingPage.vue"; // Preload LoadingPage
+import StockPage from "../components/StockPage.vue"; // Import der StockPage-Komponente
 
 // Reusable Auth Check
 const requireAuth = (allowedRole = null) => (to, from, next) => {
@@ -45,6 +46,7 @@ const routes = [
   { path: "/home", component: HomePage, beforeEnter: requireAuth() },
   { path: "/weather", component: WeatherPage, beforeEnter: requireAuth("rich") },
   { path: "/wikisearch", component: WikiPage, beforeEnter: requireAuth("rich") },
+  { path: "/stocks", component: StockPage, beforeEnter: requireAuth("rich") }, // Neue Route für StockPage
   { path: "/kein-zugriff", component: KeinZugriff },
 ];
 

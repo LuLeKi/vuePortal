@@ -22,6 +22,7 @@
     <nav>
       <router-link to="/home">Home</router-link> |
       <router-link to="/weather">Weather</router-link> |
+      <router-link to="/stocks">Stocks</router-link> |
       <router-link to="/wikisearch">WikiSearch</router-link>
     </nav>
     <router-view @login-success="handleLoginSuccess" />
