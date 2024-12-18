@@ -1,22 +1,27 @@
-Todo:
+todo:
+Comments
+style consistency
+
+bugs:
 wikipedia not working
 refreshing page doesnt work : Cannot GET /home
 (https)
 
-
-Comments
-style consistency
+Readme 5 Zeilen zur Installation und Start
 
 3Seiten:
     Matrikelnummer angeben
-    Dokumentation was gemacht wurde wie umgesetzt welche tools/framworks/features... 
-    Installationsbeschreibung (komplett mit npm install usw)
-    erfahrungsbericht was ging gut was nicch
+
+    Erfahrungsbericht
+    Gut / Schlecht / Was gelernt
+
+    Welche Elemente (aus der Liste) wurden
+    bearbeitet. Grobe Beschreibung der
+    einzelnem Items im Sinne welche Teile
+    client seitig und Server seitig sind
+    wichtig (Module, tools, frameworkds, features), sagen kein adblocker, sagen .env in folder ziehen (.env in zip), matrikelnummer in zip name, doku, readme
 
 ________________________________________________________
-bugs:
-
-
 
 Done:
     Header

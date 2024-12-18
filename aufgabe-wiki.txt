@@ -1,0 +1,60 @@
+Aufgabenstellung wiki:
+
+The purpose of this exercise is to start retrieving data from an external
+source via a REST Webservice call.We add a new site called WikiPage.vue.
+We allow to enter a
+string for which we search in Wikipedia. The search results (JSON) returned
+by the service will be shown as table (popup) in our DHBW portal.
+
+Wikipedia offers REST APIs (HTTPS Get) in order to retrieve Wikipedia data.
+After a complete revision by end of 2019 the best description is here.
+https://www.mediawiki.org/wiki/API:Query
+
+The URI you need to construct looks like this
+• URI = https://de.wikipedia.org/w/api.php (The API Server)
+• Query String (A Query string starts with ? And each key/value pair is separated by a &)
+• action=query (requests a search)
+• generator=prefixsearch (This allows you enter your search string a bit fuzzy)
+• gpslimit=4 (limits the # of results to maximal 4)
+• format=json (The return format as JSON String)
+
+prop=extracts%7Cdescription (requests text (extract) and a main line(description))
+• exintro=1 (requests only the introduction chapter)
+• explaintext=1 (the returned data is just a plain text)
+• exsentences=3 (we limit the extract to max. 3 sentences (or dots found))
+• gpssearch=<search> (the search string, the data you entered)
+
+It returns an object having maximal 4 key/values the value being again an
+object describing the data (the search hit) we need.
+Each hit is an object consisting of:
+• pageid (the unique number of the wiki page found, we need this number to
+construct the url.)
+• title (a string showing how the search string has been translated)
+• description (a string we can consider as a main line of the page)
+• extract (a string with a longer text (which is limited until 3 dots are found)
+The URL to the Wiki page you found is
+https://de.wikipedia.org/?curid=pageid
+Your task is to request a search argument (the search string) from your client
+(as HTML form), issue the REST call, and move the JSON data to a HTML
+table (similar to the previous exercise).
+In this HTML table you should show the title, the description, the extract
+and the constructed URL as column (as shown earlier).
+
+Wikipedia does not allow CORS, that means that you cannot call above URL
+directly from the browser. However our local Node.js Server can be used as
+Proxy. That means we ask the local Node.js Server to invoke the Wikipedia
+on behalf of the client code. For that we just suffix above url to the following
+string to something like
+http://localhost:6001/proxy/?url=https://de.wikipedia.org/w/api.php?
+action=query&generator=prefixsearch&format=json&gpslimit=4&prop=extracts
+%7Cdescription&exintro=1&explaintext=1&exsentences=3&redirects=1&gpssear
+ch=Schneider
+The first part sends the request to our local Node.js Server. This Server will
+then extract the real Wiki URL for us and forward that accordingly. The local
+Server will store the wiki response, as response object in an overall object as
+• error (object is set when there was a problem with the proxy). The
+particular problem will be explained in error.message
+• status (Status of the Proxy request, could be ignored in our case)
+• request (the original request object, for our debugging)
+• response ( The Wiki Response object, which we need to further process)
+
