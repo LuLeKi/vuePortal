@@ -1,10 +1,11 @@
 Todo:
-Aktienpage
-aktienpage header
-aktienpage router
+wikipedia not working
+refreshing page doesnt work : Cannot GET /home
+(https)
 
-Code durchgehen kommentare vereinheitlichen
-code einrückungen über alle  files  gleich machen
+
+Comments
+style consistency
 
 3Seiten:
     Matrikelnummer angeben
@@ -13,10 +14,9 @@ code einrückungen über alle  files  gleich machen
     erfahrungsbericht was ging gut was nicch
 
 ________________________________________________________
-not possible:
+bugs:
 
-wikipedia
-refreshing page doesnt work : Cannot GET /home
+
 
 Done:
     Header
@@ -25,6 +25,7 @@ Done:
     weather
     recaptcha
     responsive
+    stocks
 
 # weather-web
 
@@ -32,6 +33,8 @@ Done:
 ```
 npm install
 ```
+## Run Server
+node server.js
 
 ### Compiles and hot-reloads for development
 ```
