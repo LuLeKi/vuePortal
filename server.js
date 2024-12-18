@@ -12,6 +12,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(express.json());
 
+// --- CORS START ---
+// CORS-Header aktivieren
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3002'); // Erlaube den Zugriff vom Frontend
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Erlaube HTTP-Methoden
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Erlaube spezifische Header
+  next();
+});
+// --- CORS END ---
+
 // Mock-Daten für Benutzer
 const users = {
   richuser: { password: 'richpass', role: 'rich' },
@@ -167,7 +177,32 @@ app.post('/verify-recaptcha', async (req, res) => {
   }
 });
 
+// --- WIKIPEDIA PROXY START ---
+// Neue Route für den Wikipedia-Proxy
+app.get('/proxy', async (req, res) => {
+  const targetUrl = req.query.url;
+  if (!targetUrl) {
+      return res.status(400).json({ error: 'URL parameter is required' });
+  }
 
+  try {
+      const response = await axios.get(targetUrl);
+      res.json({
+          error: null,
+          status: response.status,
+          request: targetUrl,
+          response: response.data
+      });
+  } catch (error) {
+      res.status(500).json({
+          error: { message: error.message },
+          status: 500,
+          request: targetUrl,
+          response: null
+      });
+  }
+});
+// --- WIKIPEDIA PROXY END ---
 
 
 // Handle SPA (fallback to index.html for unmatched routes)
