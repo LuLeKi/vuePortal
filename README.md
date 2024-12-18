@@ -1,6 +1,6 @@
 todo:
 Comments
-style consistency
+style consistency ab style.css
 
 bugs:
 wikipedia not working

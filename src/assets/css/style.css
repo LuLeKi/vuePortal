@@ -1,27 +1,27 @@
 :root {
-    /* Default Farben (Light Mode) */
+    /* Default Colors (Light Mode) */
     --background-color: #f4f4f4;
     --text-color: #333;
     --link-color: #8A2BE2;
     --hover-color: #5a1c91;
     --section-background: #fff;
     --section-shadow: rgba(0, 0, 0, 0.1);
-    --hover-section-background: #f0f0f0; /* Hellerer Hintergrund leicht dunkler als der Standard */
+    --hover-section-background: #f0f0f0;
 }
 
 .dark-mode {
-    /* Farben für Dark Mode */
+    /* Colors for Dark Mode */
     --background-color: #1e1e1e;
     --text-color: #f4f4f4;
     --link-color: #7f7fff;
     --hover-color: #afafff;
     --section-background: #2c2c2c;
     --section-shadow: rgba(255, 255, 255, 0.1);
-    --hover-section-background: #f0f0f0; /* Hellerer Hintergrund leicht dunkler als der Standard */
-    --hover-text-color: #ffffff; /* Textfarbe beim Hover im Dark Mode */
+    --hover-section-background: #f0f0f0;
+    --hover-text-color: #ffffff;
 }
 
-/* Sektionen */
+/* Sections */
 .section {
     margin: 20px 50px;
     padding: 20px 40px;
@@ -29,26 +29,26 @@
     background: var(--section-background);
     color: var(--text-color);
     box-shadow: 0 4px 8px var(--section-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease; /* Übergänge */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .section:hover {
     transform: scale(1.02);
-    background: rgba(0, 0, 0, 0.05); /* Hintergrund minimal dunkler */
+    background: rgba(0, 0, 0, 0.05);
     color: var(--text-color);
     box-shadow: 0 8px 16px var(--section-shadow);
-    border: 2px solid var(--link-color); /* Glühender Rand */
+    border: 2px solid var(--link-color);
 }
 
 /* Global Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Einheitliche Schriftart */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
-/* Überschriften */
+/* Headings */
 h1, h2 {
     margin: 1.5rem 0;
     font-weight: bold;
@@ -56,16 +56,16 @@ h1, h2 {
     padding-left: 2rem;
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease, color 0.3s ease; /* Übergangseffekte */
-    cursor: pointer; /* Zeigt den Klick-Symbol */
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
 h1:hover, h2:hover {
-    transform: scale(1.002); /* Leichtes Vergrößern */
-    color: var(--text-color); /* Hover-Farbe */
+    transform: scale(1.002);
+    color: var(--text-color);
 }
 
-/* Bilder in Sektionen */
+/* Images in Sections */
 .section img {
     max-width: 90%;
     max-height: 250px;
@@ -81,7 +81,7 @@ h1:hover, h2:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Standard-Stile für Absätze */
+/* Standard Styles for Paragraphs */
 p {
     font-size: 1rem;
     line-height: 1.5;
@@ -89,11 +89,7 @@ p {
     text-align: left;
 }
 
-
-
-
-
-/* Click-Icon */
+/* Click Icon */
 .click-icon {
     height: 2rem;
     width: auto;
@@ -103,37 +99,36 @@ p {
 }
 
 .click-icon:hover {
-    transform: rotate(20deg) scale(1.2); /* Leichtes Drehen und Vergrößern */
+    transform: rotate(20deg) scale(1.2);
 }
 
-/* Karten und Standorte */
+/* Maps */
 .map-container {
-    width: 400px; /* Breite der Karte */
-    height: 400px; /* Höhe der Karte */
-    border-radius: 20px; /* Runde Ecken */
-    border: none; /* Kein Rand */
-    margin: 10px 2rem 0; /* Zentriert */
-    overflow: hidden; /* Überschneidungen verhindern */
-    display: block; /* Block-Level für zentrierte Elemente */
-    box-shadow: 0 4px 8px var(--section-shadow); /* Sanfter Schatten */
-    perspective: 1000px; /* 3D-Perspektive */
-    transform-style: preserve-3d; /* 3D-Stil */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Übergänge */
-    text-align: left; /* Links ausgerichtet */
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px 2rem 0;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 4px 8px var(--section-shadow);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
 }
 
 .map-container:hover {
-    transform: scale(1.05); /* Leichtes Vergrößern */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Tieferer Schatten */
-    cursor: pointer; /* Klick-Symbol */
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Weiche Animation */
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Animationen */
+/* Animations */
 h2 {
     animation: fadeIn 2s ease-in-out;
 }
-
 
 @keyframes fadeIn {
     from {
@@ -165,7 +160,7 @@ h2 {
     }
 }
 
-/* Theme-Toggle Button */
+/* Theme Toggle Button */
 .theme-toggle {
     padding: 10px 15px;
     background-color: var(--link-color);
@@ -175,75 +170,68 @@ h2 {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
-    position: absolute; /* Positioniert absolut im Header */
-    top: 20px; /* Abstand von oben */
-    right: 20px; /* Abstand von rechts */
-    z-index: 100; /* Oberhalb anderer Elemente */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
 }
 
 .theme-toggle:hover {
     background-color: var(--hover-color);
 }
 
-/* Cursor-Effekt für klickbare Elemente */
+/* Cursor Effect */
 a, .router-link, h1, h2, .click-icon, .map-container, .section img {
-    cursor: pointer; /* Zeigt den Klick-Symbol */
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
     :root {
-        --background-color: #ffffff; /* Heller Hintergrund für bessere Lesbarkeit */
-        --text-color: #222; /* Leicht dunklerer Text */
-        --link-color: #6a1bab; /* Dezenteres Link-Farbschema */
-        --section-background: #f9f9f9; /* Hellerer Abschnitthintergrund */
-        --section-shadow: rgba(0, 0, 0, 0.05); /* Leichter Schatten */
+        --background-color: #ffffff;
+        --text-color: #222;
+        --link-color: #6a1bab;
+        --section-background: #f9f9f9;
+        --section-shadow: rgba(0, 0, 0, 0.05);
     }
 
-    /* Sektionen */
     .section {
         margin: 10px 20px;
         padding: 15px 20px;
         border-radius: 10px;
     }
 
-    /* Überschriften */
     h1, h2 {
         margin: 1rem 0;
         font-size: 1.2rem;
         padding-left: 1rem;
     }
 
-    /* Paragraphen */
     p {
         font-size: 0.9rem;
         margin: 0.5rem 1rem;
         text-align: justify;
     }
 
-    /* Bilder in Sektionen */
     .section img {
-        max-width: 100%; /* Bilder passen sich der Breite des Containers an */
+        max-width: 100%;
         max-height: 200px;
-        margin: 5px auto; /* Zentriert */
+        margin: 5px auto;
     }
 
-    /* Karten */
     .map-container {
-        width: 100%; /* Karte nutzt die volle Breite */
-        height: 300px; /* Reduzierte Höhe für mobile Ansicht */
-        margin: 10px 0; /* Weniger Abstand */
+        width: 100%;
+        height: 300px;
+        margin: 10px 0;
     }
 
-    /* Loader */
     .loader {
         width: 30px;
         height: 30px;
     }
 
-    /* Theme-Toggle Button */
     .theme-toggle {
-        top: 10px; /* Geringerer Abstand von oben */
-        right: 10px; /* Geringerer Abstand von rechts */
+        top: 10px;
+        right: 10px;
         padding: 8px 12px;
         font-size: 0.9rem;
     }
