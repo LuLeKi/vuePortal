@@ -1,5 +1,5 @@
 
-# VuePortal website setup and deployment
+# vuePortal website setup and deployment
 
 ## Introduction
 This guide provides instructions for setting up and running the VuePortal website locally.
