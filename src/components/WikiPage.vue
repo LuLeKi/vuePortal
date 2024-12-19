@@ -2,6 +2,7 @@
   <div class="wiki-page">
     <h1>Wikipedia Suche</h1>
 
+    <!-- Input field for search term and button to initiate search -->
     <div>
       <input
         v-model="searchTerm"
@@ -12,6 +13,7 @@
       <button @click="fetchWikiData">Suche starten</button>
     </div>
 
+    <!-- Display results if available -->
     <div v-if="wikiResults.length" class="wiki-info">
       <table>
         <thead>
@@ -35,10 +37,12 @@
       </table>
     </div>
 
+    <!-- Display error message if there is an error -->
     <div v-else-if="errorMessage" class="error">
       {{ errorMessage }}
     </div>
 
+    <!-- Prompt user to enter a search term if no results or error -->
     <div v-else>
       <p>Bitte einen Suchbegriff eingeben und auf "Suche starten" klicken.</p>
     </div>
@@ -51,32 +55,34 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      searchTerm: '',
-      wikiResults: [],
-      errorMessage: ''
+      searchTerm: '', // Stores the user's search term
+      wikiResults: [], // Array to hold Wikipedia search results
+      errorMessage: '', // Error message to display if the search fails
     };
   },
   methods: {
+    // Fetch Wikipedia data based on the search term
     async fetchWikiData() {
-      const proxyBase = 'http://localhost:3001/proxy';
+      const proxyBase = 'http://localhost:3001/proxy'; // Proxy server for handling CORS
       const wikiUrl = `https://de.wikipedia.org/w/api.php?action=query&generator=prefixsearch&format=json&gpslimit=4&prop=extracts%7Cdescription&exintro=1&explaintext=1&exsentences=3&gpssearch=${encodeURIComponent(this.searchTerm)}`;
 
       try {
+        // Make a GET request to the Wikipedia API via the proxy
         const response = await axios.get(`${proxyBase}?url=${encodeURIComponent(wikiUrl)}`);
         const wikiResponse = response.data.response;
         if (wikiResponse && wikiResponse.query && wikiResponse.query.pages) {
-          this.wikiResults = Object.values(wikiResponse.query.pages);
+          this.wikiResults = Object.values(wikiResponse.query.pages); // Extract results
         } else {
-          this.wikiResults = [];
+          this.wikiResults = []; // No results found
         }
-        this.errorMessage = '';
+        this.errorMessage = ''; // Clear any previous error messages
       } catch (error) {
-        console.error('Fehler beim Abrufen der Daten:', error);
-        this.errorMessage = 'Fehler beim Abrufen der Daten. Bitte erneut versuchen.';
-        this.wikiResults = [];
+        console.error('Fehler beim Abrufen der Daten:', error); // Log the error
+        this.errorMessage = 'Fehler beim Abrufen der Daten. Bitte erneut versuchen.'; // Display error message
+        this.wikiResults = []; // Clear previous results
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -159,87 +165,72 @@ export default {
   margin-top: 20px;
 }
 
-/* Dark Mode für Wiki-Seite */
+/* Dark Mode styles */
 .dark-mode .wiki-page {
-  background-color: #2c2c2c; /* Dunkler Hintergrund */
-  color: #f4f4f4; /* Heller Text */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Dezenter Rahmen */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Stärkere Schatten */
+  background-color: #2c2c2c; /* Dark background */
+  color: #f4f4f4; /* Light text */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Deeper shadow */
 }
 
 .dark-mode .wiki-page input {
-  background-color: #1e1e1e; /* Dunkler Input-Hintergrund */
-  color: #f4f4f4; /* Heller Text */
-  border: 1px solid #8a2be2; /* Rahmen in Lila */
+  background-color: #1e1e1e; /* Dark input background */
+  color: #f4f4f4; /* Light text */
+  border: 1px solid #8a2be2; /* Purple border */
 }
 
 .dark-mode .wiki-page button {
-  background-color: #8a2be2; /* Lila Hintergrund */
-  color: #ffffff; /* Weiße Schrift */
-  border: none; /* Kein Rahmen */
+  background-color: #8a2be2; /* Purple background */
+  color: #ffffff; /* White text */
 }
 
 .dark-mode .wiki-page button:hover {
-  background-color: #5a1c91; /* Dunkleres Lila beim Hover */
+  background-color: #5a1c91; /* Darker purple on hover */
 }
 
 .dark-mode .wiki-info th {
-  background-color: #8a2be2; /* Dunkles Lila */
+  background-color: #8a2be2; /* Dark purple */
 }
 
 .dark-mode .wiki-info td {
-  color: #f4f4f4; /* Heller Text */
+  color: #f4f4f4; /* Light text */
 }
 
 .dark-mode .wiki-info a {
-  color: #8a2be2; /* Lila Links */
+  color: #8a2be2; /* Purple links */
 }
 
 .dark-mode .wiki-info a:hover {
-  color: #5a1c91; /* Dunkleres Lila beim Hover */
+  color: #5a1c91; /* Darker purple on hover */
 }
 
-/* Mobile Optimierung für die Wiki-Seite */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .wiki-page {
-    margin: 20px 5%; /* Anpassung an mobile Seitenränder */
+    margin: 20px 5%; /* Adjust margins for smaller screens */
     padding: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Leichterer Schatten */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Softer shadow for mobile */
   }
 
   .wiki-page input {
-    width: 90%; /* Eingabefeld passt sich mobiler Breite an */
+    width: 90%; /* Input field adapts to mobile width */
     max-width: none;
   }
 
   .wiki-page button {
-    width: auto; /* Flexibler Button */
-    margin-top: 10px; /* Abstand zum Eingabefeld */
+    width: auto; /* Flexible button width */
+    margin-top: 10px; /* Spacing above button */
   }
 
   .wiki-info table {
-    font-size: 14px; /* Kleinere Schrift für mobile Tabellen */
-    overflow-x: auto; /* Scrollen bei zu breiten Tabellen */
-    display: block; /* Blockdarstellung für bessere Mobilansicht */
+    font-size: 14px; /* Smaller font for mobile tables */
+    overflow-x: auto; /* Horizontal scrolling for wide tables */
+    display: block; /* Block layout for better responsiveness */
   }
 
   .wiki-info th,
   .wiki-info td {
-    padding: 8px; /* Weniger Polsterung für Platzersparnis */
+    padding: 8px; /* Reduced padding for space saving */
   }
 }
 </style>
-
-
-.wiki-info table {
-  display: block; /* Ermöglicht Scrollbarkeit */
-  overflow-x: auto; /* Horizontales Scrollen bei Bedarf */
-  white-space: nowrap; /* Verhindert den Zeilenumbruch in Zellen */
-}
-
-.wiki-info th,
-.wiki-info td {
-  font-size: 0.85em; /* Kleinere Schriftgröße für bessere Lesbarkeit */
-  padding: 5px; /* Reduzierter Innenabstand */
-}
-*/

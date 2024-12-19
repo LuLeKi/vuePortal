@@ -20,48 +20,48 @@ export default {
       username: "",
       password: "",
       errorMessage: "",
-      siteKey: process.env.VUE_APP_RECAPTCHA_SITE_KEY, // reCAPTCHA Site Key aus der .env-Datei
+      siteKey: process.env.VUE_APP_RECAPTCHA_SITE_KEY, // reCAPTCHA Site Key from .env file
     };
   },
   methods: {
     async login() {
       try {
-        // Überprüfen, ob reCAPTCHA verfügbar ist
+        // Ensure reCAPTCHA is available
         if (!window.grecaptcha) {
-          this.errorMessage = "reCAPTCHA konnte nicht geladen werden.";
+          this.errorMessage = "reCAPTCHA could not be loaded.";
           return;
         }
 
-        // reCAPTCHA ausführen und Token abrufen
+        // Execute reCAPTCHA and fetch token
         const token = await grecaptcha.enterprise.execute(this.siteKey, { action: "LOGIN" });
-        console.log("reCAPTCHA-Token:", token);
+        console.log("reCAPTCHA token:", token);
 
-        // Senden der Login-Daten zusammen mit dem reCAPTCHA-Token
+        // Send login data with reCAPTCHA token
         axios
           .post("/login", {
             username: this.username,
             password: this.password,
-            recaptchaToken: token, // reCAPTCHA-Token wird mitgesendet
+            recaptchaToken: token, // Send reCAPTCHA token
           })
           .then((response) => {
-            console.log("Login erfolgreich mit Benutzer:", response.data.username);
-            
-            // Emit-Events auslösen
-            this.$emit("login-success", response.data.username); // Login erfolgreich            
+            console.log("Login successful for user:", response.data.username);
+
+            // Emit event for successful login
+            this.$emit("login-success", response.data.username);
             this.$router.push("/home");
           })
           .catch((error) => {
-            console.error("Login fehlgeschlagen:", error);
-            this.errorMessage = "Ungültige Anmeldedaten oder reCAPTCHA-Validierung fehlgeschlagen.";
+            console.error("Login failed:", error);
+            this.errorMessage = "Invalid credentials or reCAPTCHA validation failed.";
           });
       } catch (error) {
-        console.error("Fehler beim Ausführen von reCAPTCHA:", error);
-        this.errorMessage = "Fehler beim Ausführen von reCAPTCHA. Bitte versuchen Sie es später erneut.";
+        console.error("Error executing reCAPTCHA:", error);
+        this.errorMessage = "Error executing reCAPTCHA. Please try again later.";
       }
     },
   },
   mounted() {
-    // reCAPTCHA-Skript laden
+    // Load reCAPTCHA script
     const script = document.createElement("script");
     script.src = `https://www.google.com/recaptcha/enterprise.js?render=${this.siteKey}`;
     script.async = true;
@@ -71,113 +71,112 @@ export default {
 };
 </script>
 
-
 <style scoped>
-/* Simple styles for the login page */
+/* Styling for the login page */
 .login-page {
-  max-width: 800px; /* Gleiche maximale Breite wie bei Wetter- und Wikipedia-Seite */
-  margin: 30px auto; /* Zentrierte Position mit Abstand nach oben/unten */
-  padding: 20px 40px; /* Gleiche Innenabstände */
-  border-radius: 15px; /* Runde Ecken */
-  background-color: #f4f4f9; /* Heller Hintergrund */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Schattierung */
-  text-align: center; /* Zentrierte Textelemente */
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px 40px;
+  border-radius: 15px;
+  background-color: #f4f4f9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .login-page input {
-  padding: 10px; /* Gleiche Polsterung wie bei Wetter- und Wikipedia-Seite */
-  margin-bottom: 15px; /* Abstand zwischen den Eingabefeldern */
-  border: 2px solid #007bff; /* Blaue Rahmenfarbe */
-  border-radius: 5px; /* Runde Ecken */
-  font-size: 16px; /* Konsistente Schriftgröße */
-  width: calc(100% - 40px); /* Gleiche Breitenregelung wie bei Wetter */
-  max-width: 400px; /* Maximale Breite */
-  display: block; /* Eingabefelder untereinander */
-  margin-left: auto; /* Zentrierung */
-  margin-right: auto; /* Zentrierung */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  font-size: 16px;
+  width: calc(100% - 40px);
+  max-width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login-page button {
-  padding: 10px 15px; /* Gleiche Größe wie bei Wetter-Button */
-  border: none; /* Ohne Rahmen */
-  border-radius: 5px; /* Runde Ecken */
-  background-color: #007bff; /* Blaue Farbe */
-  color: white; /* Weiße Schrift */
-  font-size: 16px; /* Konsistente Schriftgröße */
-  cursor: pointer; /* Mauszeiger auf Button */
-  transition: background-color 0.3s ease; /* Sanfte Hover-Animation */
-  width: calc(100% - 40px); /* Gleiche Breitenregelung */
-  max-width: 400px; /* Maximale Breite */
-  margin-left: auto; /* Zentrierung */
-  margin-right: auto; /* Zentrierung */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 40px);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login-page button:hover {
-  background-color: #0056b3; /* Dunkleres Blau beim Hover */
+  background-color: #0056b3;
 }
 
 .error {
   color: red;
-  margin-top: 15px; /* Abstand zur Fehlermeldung */
-  text-align: center; /* Zentrierte Fehlermeldung */
+  margin-top: 15px;
+  text-align: center;
 }
 
-/* Dark Mode für Login */
+/* Dark mode styles */
 .dark-mode .login-page {
-  background-color: #2c2c2c; /* Dunkler Hintergrund */
-  color: #f4f4f4; /* Heller Text */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Dezenter Rahmen */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Stärkere Schatten */
+  background-color: #2c2c2c;
+  color: #f4f4f4;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .dark-mode .login-page input {
-  background-color: #1e1e1e; /* Dunkler Input-Hintergrund */
-  color: #f4f4f4; /* Heller Text */
-  border: 1px solid #8a2be2; /* Rahmen in Lila */
+  background-color: #1e1e1e;
+  color: #f4f4f4;
+  border: 1px solid #8a2be2;
 }
 
 .dark-mode .login-page button {
-  background-color: #8a2be2; /* Lila Hintergrund */
-  color: #ffffff; /* Weiße Schrift */
-  border: none; /* Kein Rahmen */
+  background-color: #8a2be2;
+  color: #ffffff;
+  border: none;
 }
 
 .dark-mode .login-page button:hover {
-  background-color: #5a1c91; /* Dunkleres Lila beim Hover */
+  background-color: #5a1c91;
 }
 
 .dark-mode .login-page .error {
-  color: #ff6b6b; /* Fehler in auffälligem Rot */
+  color: #ff6b6b;
 }
 
-/* Mobile Anpassungen für die Login-Seite */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .login-page {
-    margin: 20px 5%; /* Größerer Abstand zu den Seiten */
-    padding: 20px; /* Konsistenter Innenabstand */
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Leichter Schatten für mobile Geräte */
+    margin: 20px 5%;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   }
 
   .login-page input {
-    width: 90%; /* Eingabefelder passen sich der Breite an */
-    margin-bottom: 15px; /* Abstand zwischen den Feldern */
-    padding: 10px; /* Angenehme Größe für mobile Eingaben */
-    font-size: 16px; /* Schriftgröße für bessere Lesbarkeit */
-    border-radius: 5px; /* Runde Ecken */
+    width: 90%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
   }
 
   .login-page button {
-    width: 100%; /* Button nimmt die gesamte Breite ein */
-    padding: 10px; /* Konsistente Höhe des Buttons */
-    font-size: 16px; /* Anpassung der Schriftgröße */
-    margin-top: 10px; /* Abstand nach oben */
-    border-radius: 5px; /* Runde Ecken */
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
   }
 
   .error {
-    font-size: 0.9rem; /* Kleinere Schriftgröße für die Fehlermeldung */
-    margin-top: 10px; /* Abstand zur Fehlermeldung */
-    text-align: center; /* Zentrierte Fehlermeldung */
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
   }
 }
 </style>

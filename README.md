@@ -1,60 +1,64 @@
-todo:
-Comments
-style consistency ab style.css
 
-bugs:
-wikipedia not working
-refreshing page doesnt work : Cannot GET /home
-(https)
+# Project Setup and Deployment
 
-Readme 5 Zeilen zur Installation und Start
+## Introduction
+This guide provides instructions for setting up and running the VuePortal website locally.
 
-3Seiten:
-    Matrikelnummer angeben
+## Prerequisites
 
-    Erfahrungsbericht
-    Gut / Schlecht / Was gelernt
+### If Node.js is not installed:
+Download and install Node.js from the official site:  
+[Node.js Download](https://nodejs.org/en/download/package-manager/current)
 
-    Welche Elemente (aus der Liste) wurden
-    bearbeitet. Grobe Beschreibung der
-    einzelnem Items im Sinne welche Teile
-    client seitig und Server seitig sind
-    wichtig (Module, tools, frameworkds, features), sagen kein adblocker, sagen .env in folder ziehen (.env in zip), matrikelnummer in zip name, doku, readme
+## Get the Project
 
-________________________________________________________
+1. Clone the project repository:
+   ```bash
+   git clone https://github.com/LuLeKi/vuePortal.git
+   ```
 
-Done:
-    Header
-    Homepage
-    Login
-    weather
-    recaptcha
-    responsive
-    stocks
+3. Move into the project folder:
+   ```bash
+   cd pathToProject/VuePortal
+   ```
+2. Place the `.env` file from the provided ZIP archive into the project folder  
+   **OR**  
+   Unzip the entire ZIP archive into the project folder.
 
-# weather-web
+## Project Setup
 
-## Project setup
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+## Running the Server and Compiling the Website
+
+### Open two command line terminals (in VS Code: `Ctrl + Shift + ö` on German keyboards)
+
+#### Terminal 1: Run the Server
+1. Start the server:
+   ```bash
+   node server.js
+   ```
+
+#### Terminal 2: Compile the Website
+1. Compile the development website:
+   ```bash
+   npm run serve
+   ```
+
+2. Open the link in your browser:  
+   [http://localhost:3002/](http://localhost:3002/)
+
+## Quick Install and Server Run Command
+
+To quickly set up and run the server:
+```bash
 npm install
-```
-## Run Server
 node server.js
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

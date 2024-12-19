@@ -39,7 +39,7 @@ import { nextTick } from "vue"; // Importiere nextTick von Vue
 export default {
   data() {
     return {
-      symbol: "AAPL", // Standardwert
+      symbol: "AAPL", // Default ticker symbol
       stockData: null,
       error: "",
       lastRefreshed: "",
@@ -48,56 +48,36 @@ export default {
   },
   methods: {
     async fetchStockData() {
-      console.log("Datenabfrage gestartet für Symbol:", this.symbol); // Log bei Start der Datenabfrage
+      console.log("Fetching data for symbol:", this.symbol);
       this.error = "";
       this.stockData = null;
-      const apiKey = process.env.VUE_APP_STOCK_KEY; // API-Key aus der .env-Datei
+      const apiKey = process.env.VUE_APP_STOCK_KEY; // API key from .env file
       const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${this.symbol}&apikey=${apiKey}`;
-
-      console.log("Verwendete API URL:", url); // Log der URL, die für die API-Anfrage verwendet wird
 
       try {
         const response = await axios.get(url);
-        console.log("API Antwort erhalten:", response.data); // Log für die Antwort der API
-
         const data = response.data;
         if (data["Time Series (Daily)"]) {
-          console.log("Daten für Time Series gefunden:", data["Time Series (Daily)"]); // Log, wenn Daten vorhanden sind
           const timeSeries = data["Time Series (Daily)"];
-          const dates = Object.keys(timeSeries).slice(0, 10).reverse(); // Letzte 10 Tage
+          const dates = Object.keys(timeSeries).slice(0, 10).reverse(); // Last 10 days
           const closingPrices = dates.map((date) => timeSeries[date]["4. close"]);
           this.lastRefreshed = dates[0];
           this.closingPrice = closingPrices[0];
           this.stockData = { dates, closingPrices };
-          console.log("Verarbeitete Daten:", this.stockData); // Log der verarbeiteten Daten
 
           nextTick(() => {
-            this.renderChart(dates, closingPrices); // Stelle sicher, dass das DOM bereit ist
+            this.renderChart(dates, closingPrices);
           });
         } else {
-          this.error = "Keine Daten gefunden.";
-          console.log("Keine Daten in der Antwort gefunden."); // Log, wenn keine Daten verfügbar sind
+          this.error = "No data found.";
         }
       } catch (error) {
-        this.error = "Fehler beim Abrufen der Daten.";
-        console.error("Fehler bei der API-Anfrage:", error); // Log für den Fehler
-
-        // Detaillierte Fehlerausgabe
-        if (error.response) {
-          console.error("Antwort der API im Fehlerfall:", error.response.data);
-          console.error("Fehlerstatus der API:", error.response.status);
-        } else if (error.request) {
-          console.error("Keine Antwort von der API erhalten:", error.request);
-        } else {
-          console.error("Fehler bei der Anfrage:", error.message);
-        }
+        this.error = "Error fetching data.";
+        console.error("Error with API request:", error);
       }
     },
 
     renderChart(dates, prices) {
-      console.log("Rendering des Charts mit den folgenden Daten:", dates, prices); // Log der Daten vor dem Rendern des Diagramms
-
-      // Überprüfen, ob das Canvas-Element vorhanden ist
       const ctx = document.getElementById("stockCanvas")?.getContext("2d");
       if (ctx) {
         new Chart(ctx, {
@@ -106,9 +86,9 @@ export default {
             labels: dates,
             datasets: [
               {
-                label: "Schlusskurs",
+                label: "Closing Price",
                 data: prices,
-                borderColor: "#007bff", // Blau für die Linie
+                borderColor: "#007bff",
                 borderWidth: 2,
               },
             ],
@@ -123,7 +103,7 @@ export default {
           },
         });
       } else {
-        console.error("Canvas konnte nicht gefunden werden!"); // Wenn Canvas nicht gefunden wird
+        console.error("Canvas not found!");
       }
     },
   },
@@ -178,7 +158,7 @@ export default {
   margin-top: 20px;
 }
 
-/* Dark Mode für Stock */
+/* Dark Mode styles */
 .dark-mode .stock-page {
   background-color: #2c2c2c;
   color: #f4f4f4;
@@ -205,7 +185,7 @@ export default {
   color: #ff6b6b;
 }
 
-/* Mobile Anpassungen */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .stock-page {
     margin: 20px 5%;
