@@ -34,7 +34,7 @@ Download and install Node.js from the official site:
 
 ## Running the Server and Compiling the Website
 
-### Open two command line terminals (in VS Code: `Ctrl + Shift + ö` on German keyboards)
+### Open two command line terminals (in VS Code: `Ctrl + Shift + ö`)
 
 #### Terminal 1: Run the Server
 1. Start the server:
