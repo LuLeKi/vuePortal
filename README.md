@@ -8,7 +8,7 @@ This guide provides instructions for setting up and running the VuePortal websit
 
 ### If Node.js is not installed:
 Download and install Node.js from the official site:  
-[Node.js Download](https://nodejs.org/en/download/package-manager/current)
+[Node.js Download](https://nodejs.org/en/download/prebuilt-installer/current)
 
 ## Get the Project
 
